@@ -10,40 +10,61 @@
     Controller.prototype.showAll = function(){
         var self = this;
         self.model.read(function(data){
-            self.view.showItems(data);
-            self.view.counter(data);
+            var list = data.list;
+            var counter = {
+                total: data.total,
+                left: data.total - data.completed
+            };
+            self.view.showItems(list);
+            self.view.counter(counter);
         });
     }
 
     Controller.prototype.showActive = function(){
         var self = this;
-        var filter = false;
         self.model.read(function(data){
-            self.view.showItems(data);
-        },function(a,b){
-            if(a == b.completed){
+            var list = data.list;
+            var counter = {
+                total: data.total,
+                left: data.total - data.completed
+            };
+            self.view.showItems(list);
+            self.view.counter(counter);
+        },function(b){
+            if(false == b.completed){
                 return true;
             }
-        },filter);
+            return false;
+        });
     }
 
     Controller.prototype.showCompleted = function(){
         var self = this;
-        var filter = true;
         self.model.read(function(data){
-            self.view.showItems(data);
-        },function(a,b){
-            if(a == b.completed){
+            var list = data.list;
+            var counter = {
+                total: data.total,
+                left: data.total - data.completed
+            };
+            self.view.showItems(list);
+            self.view.counter(counter);
+        },function(b){
+            if(true == b.completed){
                 return true;
             }
-        },filter);
+            return false;
+        });
     }
 
     Controller.prototype.addItem = function(title){
         var self = this;
         self.model.add(title,function(item,todos){
+            var counter = {
+                total: todos.total,
+                left: todos.total - todos.completed
+            };
             self.view.addItem(item);
-            self.view.counter(todos);
+            self.view.counter(counter);
         });
     }
 
@@ -63,8 +84,12 @@
             var p = target.parentNode.parentNode;
             var id = p.getAttribute('data-id');
             self.model.remove(id,function(id,todos){
+                var counter = {
+                    total: todos.total,
+                    left: todos.total - todos.completed
+                };
                 self.view.removeItem(id);
-                self.view.counter(todos);
+                self.view.counter(counter);
             });
             
         });
@@ -90,8 +115,12 @@
             var id = li.getAttribute('data-id');
             let item = self.view.getItemObject(id);
             self.model.update(item,function(updateItem,todos){
+                var counter = {
+                    total: todos.total,
+                    left: todos.total - todos.completed
+                };
                 self.view.updateItem(updateItem);
-                self.view.counter(todos);
+                self.view.counter(counter);
             });
         
         });

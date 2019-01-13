@@ -98,52 +98,40 @@
         this.newTodo.value = '';
     }
 
-    View.prototype.counter = function(list){
-        list = list || [];
-        var counter = {};
-        counter.undone = 0;
-        counter.done = 0;
-        counter.total = list.length;
-        for(let i = 0;i < list.length; i++){
-            if(list[i].completed == false){
-                counter.undone ++;
-            }
-            else{
-                counter.done ++;
-            }
-        }
+    View.prototype.counter = function(counter){
+        
         if(counter.total == 0){
             this.footer.style.display = 'none';
         }
         else{
             this.footer.style.display = 'block';
-            if(counter.undone > 1){
-                this.todoCount.innerHTML = '<strong>'+counter.undone+' </strong>'+'items left';
+            if(counter.left > 1){
+                this.todoCount.innerHTML = '<strong>'+counter.left+' </strong>'+'items left';
             }
             else{
-                this.todoCount.innerHTML = '<strong>'+counter.undone+' </strong>'+'item left';
+                this.todoCount.innerHTML = '<strong>'+counter.left+' </strong>'+'item left';
             }
         }
         
     }
 
     View.prototype.setFilter = function(filter){
-        var a = qsa('a',this.footer);
+        var a = qsa('.filters a',this.footer);
         for(let i = 0; i < a.length; i++){
-            a[i].className = '';
+            a[i].className = 'btn btn-default btn-xs';
         }
         if(filter == 'All'){
             var selected = qs('[href="#/"]',this.footer);
-            selected.className = 'selected';
+            selected.className = 'btn btn-primary btn-xs';
             
         }
         else if(filter == 'Active'){
             var selected = qs('[href="#/active"]',this.footer);
-            selected.className = 'selected';
+            selected.className = 'btn btn-primary btn-xs';
         }
         else if(filter == 'Completed'){
-            var selected = qs('[href="#/completed"]',this.footer);
-            selected.className = 'selected';
+            var selected = qs('[href="#/Completed"]',this.footer);
+            selected.className = 'btn btn-primary btn-xs';
         }
     }
 

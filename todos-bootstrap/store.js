@@ -7,20 +7,42 @@
         this._dbName = name;
         var local = localStorage.getItem(name);
         if(local == null){
-            localStorage.setItem(name,JSON.stringify([]));
+            var todos = {
+                total: 0,
+                completed: 0,
+                list: []
+            };
+            localStorage.setItem(name,JSON.stringify(todos));
         }
     }
 
-	Store.prototype.get = function(callback){
+	Store.prototype.get = function(callback,equals){
 		callback = callback || function () {};
         let todos = JSON.parse(localStorage.getItem(this._dbName));
-        callback.call(this,todos);
+        if(equals == null){
+            callback.call(this,todos);
+        }
+        else{
+            let subList = [];
+            for(let i = 0; i < todos.list.length;i++){
+                if(equals.call(this,todos.list[i]) == true){
+                    subList.push(todos.list[i]);
+                }
+            }
+            var subTodos = {
+                total : todos.total,
+                completed : todos.completed,
+                list : subList
+            }
+            callback.call(this,subTodos);
+        }
 	}
 
 	Store.prototype.add = function(newItem,callback){
 		callback = callback || function () {};
         let todos = JSON.parse(localStorage.getItem(this._dbName));
-        todos.push(newItem);
+        todos.list.push(newItem);
+        todos.total ++;
         localStorage.setItem(this._dbName,JSON.stringify(todos));
         callback.call(this,todos);
 	}
@@ -28,9 +50,13 @@
 	Store.prototype.remove = function(id,callback){
 		callback = callback || function () {};	
         let todos = JSON.parse(localStorage.getItem(this._dbName));
-        for(let i=0 ;i<todos.length;i++){
-            if(id == todos[i].id){
-                todos.splice(i,1);
+        for(let i=0 ;i<todos.list.length;i++){
+            if(id == todos.list[i].id){
+                if(todos.list[i].completed == true){
+                    todos.completed --;
+                }
+                todos.list.splice(i,1);
+                todos.total --;
                 break;
             }
         }
@@ -41,9 +67,15 @@
 	Store.prototype.update = function(updateItem,callback){
 		callback = callback || function () {};
 		let todos = JSON.parse(localStorage.getItem(this._dbName));
-        for(let i=0 ;i < todos.length; i++){
-            if(updateItem.id == todos[i].id){
-                todos[i] = updateItem;
+        for(let i=0 ;i < todos.list.length; i++){
+            if(updateItem.id == todos.list[i].id){
+                if(todos.list[i].completed != updateItem.completed && updateItem.completed == false){
+                    todos.completed --;
+                }
+                if(todos.list[i].completed != updateItem.completed && updateItem.completed == true){
+                    todos.completed ++;
+                }
+                todos.list[i] = updateItem;
                 break;
             }
         }

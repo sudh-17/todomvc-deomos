@@ -6,9 +6,8 @@
         this.store = store;
     }
 
-    Model.prototype.read = function(callback,equals, filter){
-        callback = callback || function () {};
-        this.store.get(callback);
+    Model.prototype.read = function(callback,equals){
+        this.store.get(callback,equals);
     }
 
     Model.prototype.add = function(title,callback){
