@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todomvc js 版本</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./base.css">
+</head>
+<body>
+
+    <div class="main">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h1 class="panel-title">TODOS</h1>
+            </div>
+            <div class="panel-body">
+                <input type="text" class="form-control new-todo" placeholder="What needs to be done ?">
+            </div>
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="col-1">
+                            <input class="toggle-all" type="checkbox">
+                            <label class="icon"></label>
+                        </th>
+                        <th class="col-2">TODO</th>
+                        <th>REMOVE</th>
+                      </tr>
+                    </thead>
+                    <tbody class="todo-list">
+                      <tr data-id="" class="completed">
+                        <th scope="row"><input class="toggle" type="checkbox"></th>
+                        <td class="title">Mark</td>
+                        <td>
+                            <span class="destroy glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            
+            <div class="panel-footer">
+                <footer class="footer" style="display: block;">
+                    <span class="todo-count"><strong>4</strong>items left</span>
+                    <ul class="filters">
+                        <li>
+                            <a href="#/" class="btn btn-primary btn-xs active" role="button">All</a>
+                        </li>
+                        <li>
+                            <a href="#/active" class="btn btn-xs active" role="button">Active</a>
+                        </li>
+                        <li>
+                            <a href="#/Completed" class="btn btn-xs active" role="button">Completed</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="clear-completed btn btn-warning btn-xs active">clear completed</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="../jquery-2.2.4.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./util.js"></script>
+    <script src="./store.js"></script>
+    <script src="./model.js"></script>
+    <script src="./view.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./app.js"></script>
+    
+</body>
+</html>

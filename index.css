@@ -1,0 +1,145 @@
+body,html{
+    background: #f5f5f5;
+}
+body {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #4d4d4d;
+    min-width: 230px;
+    max-width: 550px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+}
+#app {
+    position: absolute;
+    width: 550px;
+    left: 50%;
+    top: 17%;
+    margin-left: -275px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+#app .main{
+    position: relative;
+}
+#app .main input[name='checks']{
+    position: absolute;
+    top: -35px;
+    left: 8px;
+}
+.header {
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    box-shadow: inset 0 -3px 1px rgba(0,0,0,0.03);
+
+}
+.header h1 {
+    position: absolute;
+    bottom: -16px;
+    text-align: center;
+    width: 100%;
+    font-size: 100px;
+    color: rgba(175, 47, 47, 0.15);
+    font-weight: normal;
+}
+.header input {
+    width: 100%;
+    padding: 20px 10px 20px 56px;
+    border: none;
+    font-size: 21px;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+.header input::placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+#list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#list li{
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+#list li .edit{
+    position: absolute;
+    top: 6px;
+    left: 34px;
+    height: 24px;
+    width: 90%;
+    border: 1px solid #68bbf8;
+}
+#list li:hover button{
+    display: block;
+}
+#list .view {
+    position: relative;
+    height: 27px;
+    padding: 8px;
+}
+#list .view input {
+    /* float: left; */
+    position: absolute;
+    top: 10px;
+}
+#list .view button {
+    /* float: right; */
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 25px;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 18px;
+    color: #b91111;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+#list .view label {
+    display: block;
+    padding-left: 49px;
+    padding-right: 36px;
+}
+#list .view .done { 
+    color: #AB7E7E;
+    text-decoration: line-through;
+}
+.btn {
+    margin: 0;
+    padding: 1px 8px;
+    border: 1px solid transparent;
+    outline: none;
+}
+.selected{
+    background: #337AB7;
+    color: #fff;
+}
+.footer {
+    position: relative;
+    float: left;
+    padding: 5px 10px;
+}
+.footer ul, .footer li{
+    list-style: none;
+}
+.footer ul {
+    list-style: none;
+    margin: 0;
+    float: left;
+}
+.footer li {
+    float: left;
+    padding: 1px 2px;
+}

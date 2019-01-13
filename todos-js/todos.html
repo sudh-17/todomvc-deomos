@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="../index.css">
+        <title>todomvc</title>
+    </head>
+    <body>
+        <a href="https://github.com/sudh-17/todomvc/tree/master/todos" style="position: absolute;top: 25px;left: 32px;">source</a>
+        <div id="app">
+            <div class="header">
+                <h1>todos</h1>
+                <input type="text" id="input" placeholder="What needs to be done ">
+            </div>
+            <div class="main">
+                <input type="checkbox" name="checks" id="btnCheck">
+                <ul id="list">
+                    
+                </ul>
+            </div>
+            <div class="footer">
+                <span style="float:left"><strong id="itemLeft">0</strong> item left</span>
+                <ul>
+                    <li>
+                        <button class="btn selected" name="btnGp" id="btnAll">all</button>
+                    </li>
+                    <li>
+                        <button class="btn" name="btnGp" id="btnActive">active</button>
+                    </li>
+                    <li>
+                        <button class="btn" name="btnGp" id="btnCompleted">completed</button>
+                    </li>
+                    <li>
+                        <button class="btn" id="btnClear">clear completed</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script src="./jquery-2.2.4.min.js"></script>
+        <script src="./store.js"></script>
+        <script src="./controller.js"></script>
+        <script src="./app.js"></script>
+
+    </body>
+</html>
