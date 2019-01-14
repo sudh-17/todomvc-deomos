@@ -6,14 +6,14 @@
     function Store(name){
         this._dbName = name;
         var local = localStorage.getItem(name);
-        //if(local == null){
+        if(local == null){
             var todos = {
                 total: 0,
                 completed: 0,
                 list: []
             };
             localStorage.setItem(name,JSON.stringify(todos));
-        //}
+        }
     }
 
 	Store.prototype.get = function(callback,equals){
