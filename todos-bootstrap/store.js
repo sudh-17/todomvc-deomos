@@ -94,7 +94,7 @@
                 count ++;
             }
         }
-        todos.total -= (todos.total - count);
+        todos.total = count;
         todos.completed = 0;
         todos.list = list;
         localStorage.setItem(this._dbName,JSON.stringify(todos));
