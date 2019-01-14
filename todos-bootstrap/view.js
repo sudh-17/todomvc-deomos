@@ -37,13 +37,7 @@
 
     View.prototype.addItem = function(newItem){
         let tmp = document.createElement('table');
-        tmp.innerHTML = `
-        <tr data-id="${newItem.id}" class="${newItem.completed ? 'completed':''}">
-            <th scope="row"><input class="toggle" type="checkbox" checked="${newItem.completed}"></th>
-            <td class="title">${newItem.title}</td>
-            <td><span class="destroy glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-        </tr>
-        `;
+        tmp.innerHTML = this.templete(newItem);
         this.todoList.appendChild(tmp.querySelector('tr'));
     }
 
