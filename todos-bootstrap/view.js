@@ -13,30 +13,19 @@
         this.clearCompleted = qs('.clear-completed');
     }
 
-    function Template() {
-		this.defaultTemplate
-        ='<tr data-id="{{id}}" class="{{completed}}">'
-        +'<th scope="row"><input class="toggle" type="checkbox" {{checked}}></th>'
-        +'<td class="title">{{title}}</td>'
-        +'<td><span class="destroy glyphicon glyphicon-trash" aria-hidden="true"></span></td>'
-        +'</tr>';
-	}
+    View.prototype.templete = function(item){
+        let tmp = `<tr data-id="${item.id}" class="${item.completed ? 'completed':''}">
+            <th scope="row"><input class="toggle" type="checkbox" checked="${item.completed}"></th>
+            <td class="title">${item.title}</td>
+            <td><span class="destroy glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+        </tr>`;
+        return tmp;
+    }
     
     View.prototype.show = function(entry){
         var view  = '';
         for(var i= 0 ;i < entry.length; i ++){
-            var template = new Template().defaultTemplate;
-            var id = entry[i].id;
-            var title = entry[i].title;
-            var completed = entry[i].completed ? 'completed' : '';
-            var checked = entry[i].completed ? 'checked' : '';
-
-            template = template.replace('{{id}}',id)
-                .replace('{{completed}}',completed)
-                .replace('{{checked}}',checked)
-                .replace('{{title}}',title);
-
-            view = view + template;
+            view = view + this.templete(entry[i]);
         }
         return view;
     }
