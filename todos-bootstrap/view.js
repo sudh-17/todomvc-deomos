@@ -47,28 +47,15 @@
     }
 
     View.prototype.addItem = function(newItem){
-        var tr = document.createElement('tr');
-        tr.setAttribute('data-id',newItem.id);
-
-        var th = document.createElement('th');
-        th.setAttribute('scope',"row");
-        var input = document.createElement('input');
-        input.setAttribute('type','checkbox');
-        input.className = 'toggle';
-        th.appendChild(input);
-        var td1 = document.createElement('td');
-        td1.className = 'title';
-        td1.innerHTML = newItem.title;
-
-        var td2 = document.createElement('td');
-        var span = document.createElement('span');
-        span.className = 'destroy glyphicon glyphicon-trash';
-        td2.appendChild(span);
-
-        tr.appendChild(th);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        this.todoList.appendChild(tr)
+        let tmp = document.createElement('table');
+        tmp.innerHTML = `
+        <tr data-id="${newItem.id}" class="${newItem.completed ? 'completed':''}">
+            <th scope="row"><input class="toggle" type="checkbox" checked="${newItem.completed}"></th>
+            <td class="title">${newItem.title}</td>
+            <td><span class="destroy glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+        </tr>
+        `;
+        this.todoList.appendChild(tmp.querySelector('tr'));
     }
 
     View.prototype.removeItem = function(id){
