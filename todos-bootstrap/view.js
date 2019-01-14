@@ -8,7 +8,9 @@
         this.todoList = qs('.todo-list');
         this.newTodo = qs('.new-todo');
         this.todoCount = qs('.todo-count');
+        this.table = qs('.table');
         this.footer = qs('.panel-footer');
+        this.clearCompleted = qs('.clear-completed');
     }
 
     function Template() {
@@ -102,15 +104,24 @@
         
         if(counter.total == 0){
             this.footer.style.display = 'none';
+            this.table.style.display = 'none';
+            
         }
         else{
             this.footer.style.display = 'block';
+            this.table.style.display = 'block';
             if(counter.left > 1){
                 this.todoCount.innerHTML = '<strong>'+counter.left+' </strong>'+'items left';
             }
             else{
                 this.todoCount.innerHTML = '<strong>'+counter.left+' </strong>'+'item left';
             }
+        }
+        if((counter.total - counter.left) > 0){
+            this.clearCompleted.style.display = 'block';
+        }
+        else{
+            this.clearCompleted.style.display = 'none';
         }
         
     }
@@ -153,6 +164,10 @@
 
     View.prototype.bindToggleAllAction = function(handler){
         $delegated(document,'.toggle-all','click',handler);
+    }
+
+    View.prototype.bindClearCompleted = function(handler){
+        $delegated(this.footer,'.clear-completed','click',handler);
     }
 
 

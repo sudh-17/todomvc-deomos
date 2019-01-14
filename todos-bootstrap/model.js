@@ -36,6 +36,10 @@
         })
     }
 
+    Model.prototype.clearCompleted = function(callback){
+        this.store.clearCompleted(callback);
+    }
+
     /*Model.prototype.changeAllStatus = function(status,callback){
         callback = callback || function () {};
         var list = JSON.parse(localStorage.getItem(this._dbName));

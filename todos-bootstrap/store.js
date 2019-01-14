@@ -6,14 +6,14 @@
     function Store(name){
         this._dbName = name;
         var local = localStorage.getItem(name);
-        if(local == null){
+        //if(local == null){
             var todos = {
                 total: 0,
                 completed: 0,
                 list: []
             };
             localStorage.setItem(name,JSON.stringify(todos));
-        }
+        //}
     }
 
 	Store.prototype.get = function(callback,equals){
@@ -81,7 +81,25 @@
         }
         localStorage.setItem(this._dbName,JSON.stringify(todos));
         callback.call(this,todos);
-	}
+    }
+    
+    Store.prototype.clearCompleted = function(callback){
+        callback = callback || function () {};
+        let todos = JSON.parse(localStorage.getItem(this._dbName));
+        let list = [];
+        let count = 0;
+        for(let i=0 ;i < todos.list.length; i++){
+            if(false == todos.list[i].completed){
+                list.push(todos.list[i]);
+                count ++;
+            }
+        }
+        todos.total -= count;
+        todos.completed = 0;
+        todos.list = list;
+        localStorage.setItem(this._dbName,JSON.stringify(todos));
+        callback.call(this,todos);
+    }
 	
 	window.app = window.app || {};
     window.app.Store = Store;

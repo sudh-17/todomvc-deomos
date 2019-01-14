@@ -125,6 +125,18 @@
         
         });
 
+        self.view.bindClearCompleted(function(event){
+            self.model.clearCompleted(function(todos){
+                var list = todos.list;
+                var counter = {
+                    total: todos.total,
+                    left: todos.total - todos.completed
+                };
+                self.view.showItems(list);
+                self.view.counter(counter);
+            });
+        })
+
         self.view.bindToggleAllAction(function(event){
             var toggleAll = event.target;
             /*self.model.changeAllStatus(toggleAll.checked,function(data){
